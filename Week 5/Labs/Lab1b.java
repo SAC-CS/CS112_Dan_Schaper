@@ -10,7 +10,7 @@ public class Lab1b {
 
     public static void main(String[] args){
         int targetNumber = 0 + (int) (Math.random() * 10); // Set random target number
-        System.out.println(targetNumber); //For debugging purposes
+        // System.out.println(targetNumber); //For debugging purposes
         Scanner in = new Scanner(System.in);
 
         System.out.print("Please inter an integer between 0 and 10: ");
