@@ -52,3 +52,4 @@ public class Lab7 {
         JOptionPane.showMessageDialog(null, "Game Over");
     }
 }
+// Good
