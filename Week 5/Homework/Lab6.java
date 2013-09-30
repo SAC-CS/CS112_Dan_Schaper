@@ -34,3 +34,4 @@ public class Lab6 {
         System.out.println("Game Over");
     }
 }
+//Good
