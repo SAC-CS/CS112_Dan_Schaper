@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Homework" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/MakeADifference" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Homework/3.14" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Homework/3.15" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
