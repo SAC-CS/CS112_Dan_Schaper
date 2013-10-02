@@ -18,7 +18,7 @@ public class Lab2 {
         boolean winingGuess = false;
         boolean greaterGuess = false;
 
-        do { // Main application loop for game
+        while (playGame) { // Main application loop for game
             String message; // Dialog box message local variable
             String userGuessStr; // Users guess local variable
             String roundTitle = String.format("Round %d", count); // Set title for dialog box
@@ -61,7 +61,6 @@ public class Lab2 {
                 playGame = false;
             }
         }
-        while (playGame);
         JOptionPane.showMessageDialog(null, "Game Over");
     }
 }
