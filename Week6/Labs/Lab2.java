@@ -15,8 +15,8 @@ public class Lab2 {
         int maxGames = 3; // Max number of allowed games
         Random rand = new Random();
         boolean playGame = true; // Loop control
-        boolean winingGuess = false;
-        boolean greaterGuess = false;
+        boolean winingGuess;
+        boolean greaterGuess;
 
         while (playGame) { // Main application loop for game
             String message; // Dialog box message local variable
