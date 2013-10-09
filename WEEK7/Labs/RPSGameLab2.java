@@ -127,7 +127,7 @@ public class RPSGameLab2 {
 
     public void gameHistory() {
         for (int i = 0; i < roundsPlayed; i++) {
-            System.out.printf("Round %d: Computer played: %s, User Played: %s\n", i + 1, compMoves[i], userMoves[i]);
+            System.out.printf("Round %d: Computer played: %-8s User Played: %-8s\n", i + 1, compMoves[i], userMoves[i]);
         }
 
     }
