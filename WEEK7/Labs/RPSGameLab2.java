@@ -3,9 +3,9 @@ import java.util.Scanner;
 
 /**
  * @author Dan Schaper
- *         CS112 Week 7 Lab 1 Rock-Paper-Scissors
+ *         CS112 Week 7 Lab 2 Rock-Paper-Scissors
  */
-public class RPSGameLab1 {
+public class RPSGameLab2 {
     private int compItem; // Computer Item selection
     private int userItem; // User Item selection
     private int wins; // Number of wins
@@ -13,19 +13,24 @@ public class RPSGameLab1 {
     private int ties; // Number of ties
     private int roundsToWin; // Number of rounds needed to declare winner
     private int roundsPlayed; // Counter for number of rounds played
+    private String[] userMoves;
+    private String[] compMoves;
     private Scanner in = new Scanner(System.in); // Scanner for input
     private Random rand = new Random(); // Random generator
 
     /**
      * Constructor for Rock, Paper, Scissors
      */
-    public RPSGameLab1() {
+    public RPSGameLab2() {
         int maxRounds = setNumRounds(); // Set number of rounds user chooses to play
         wins = 0;
         loss = 0;
         ties = 0;
         roundsPlayed = 0;
         roundsToWin = maxRounds / 2 + 1; // number of rounds needed to win game
+        userMoves = new String[100];
+        compMoves = new String[100];
+
     }
 
     public int setNumRounds() {
@@ -92,6 +97,8 @@ public class RPSGameLab1 {
      * Main game logic method for each round
      */
     public void roundResult() {
+        userMoves[roundsPlayed] = intToItem(userItem);
+        compMoves[roundsPlayed] = intToItem(compItem);
         roundsPlayed++;
         System.out.printf("Round %d: Computer chose %s, you chose %s,\n", roundsPlayed, intToItem(compItem), intToItem(userItem));
         if (userItem - (compItem % 3) == 1) {
@@ -117,6 +124,12 @@ public class RPSGameLab1 {
             return false; //Game Over
         } else {
             return true; // Keep playing
+        }
+    }
+
+    public void gameHistory() {
+        for (int i = 0; i < roundsPlayed; i++) {
+            System.out.printf("Round %d: Computer played: %s, User Played: %s\n", i + 1, compMoves[i], userMoves[i]);
         }
 
     }
