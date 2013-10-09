@@ -63,8 +63,9 @@ public class RPSGameLab1 {
                 return "Scissors";
             case 3:
                 return "Paper";
+            default:
+                return "Error: Choice not available.";
         }
-        return "Error: Choice not available.";
     }
 
     /**
@@ -75,16 +76,16 @@ public class RPSGameLab1 {
      */
     private int itemToInt(String userChoice) {
         String userChoiceUpper = userChoice.toUpperCase();
-        if (userChoiceUpper.equals("R")) {
-            return 1;
+        switch (userChoiceUpper) {
+            case "R":
+                return 1;
+            case "S":
+                return 2;
+            case "P":
+                return 3;
+            default:
+                return 0;
         }
-        if (userChoiceUpper.equals("S")) {
-            return 2;
-        }
-        if (userChoiceUpper.equals("P")) {
-            return 3;
-        }
-        return 0;
     }
 
     /**
