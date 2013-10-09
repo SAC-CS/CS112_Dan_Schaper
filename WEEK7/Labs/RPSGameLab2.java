@@ -25,7 +25,7 @@ public class RPSGameLab2 {
         roundsPlayed = 0;
         roundsToWin = maxRounds / 2 + 1; // number of rounds needed to win game
         userMoves = new String[100]; // create a 100 move array
-        compMoves = new String[100]; // creat a 100 move array
+        compMoves = new String[100]; // create a 100 move array
 
     }
 
@@ -44,10 +44,12 @@ public class RPSGameLab2 {
             System.out.print("Please type R, P, or S:");
             userItem = itemToInt(in.next());
         }
+        userMoves[roundsPlayed] = intToItem(userItem); // Update array with user choice
     }
 
     public void setCompChoice() {
         compItem = rand.nextInt(3) + 1; // Select computers choice
+        compMoves[roundsPlayed] = intToItem(compItem); // Update array with computer choice
     }
 
     /**
@@ -93,8 +95,6 @@ public class RPSGameLab2 {
      * Main game logic method for each round
      */
     public void roundResult() {
-        userMoves[roundsPlayed] = intToItem(userItem);
-        compMoves[roundsPlayed] = intToItem(compItem);
         roundsPlayed++;
         System.out.printf("Round %d: Computer chose %s, you chose %s,\n", roundsPlayed, intToItem(compItem), intToItem(userItem));
         if (userItem - (compItem % 3) == 1) {
