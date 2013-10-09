@@ -8,13 +8,11 @@ import java.util.Scanner;
 public class RPSGameLab2 {
     private int compItem; // Computer Item selection
     private int userItem; // User Item selection
-    private int wins; // Number of wins
-    private int loss; // Number of losses
-    private int ties; // Number of ties
+    private int[] winLossTies; // Number of wins, loss, ties
     private int roundsToWin; // Number of rounds needed to declare winner
     private int roundsPlayed; // Counter for number of rounds played
-    private String[] userMoves;
-    private String[] compMoves;
+    private String[] userMoves; // Array of user moves
+    private String[] compMoves; // Array of computer moves
     private Scanner in = new Scanner(System.in); // Scanner for input
     private Random rand = new Random(); // Random generator
 
@@ -23,13 +21,11 @@ public class RPSGameLab2 {
      */
     public RPSGameLab2() {
         int maxRounds = setNumRounds(); // Set number of rounds user chooses to play
-        wins = 0;
-        loss = 0;
-        ties = 0;
+        winLossTies = new int[3]; // Init win, loss, ties values to 0
         roundsPlayed = 0;
         roundsToWin = maxRounds / 2 + 1; // number of rounds needed to win game
-        userMoves = new String[100];
-        compMoves = new String[100];
+        userMoves = new String[100]; // create a 100 move array
+        compMoves = new String[100]; // creat a 100 move array
 
     }
 
@@ -103,24 +99,26 @@ public class RPSGameLab2 {
         System.out.printf("Round %d: Computer chose %s, you chose %s,\n", roundsPlayed, intToItem(compItem), intToItem(userItem));
         if (userItem - (compItem % 3) == 1) {
             System.out.println("Sorry, you lost.");
-            loss++;
+            winLossTies[1] += 1;
         } else if (userItem == compItem) {
             System.out.println("It's a tie.");
-            ties++;
+            winLossTies[2] += 1;
         } else {
             System.out.println("Congrats, you won!");
-            wins++;
+            winLossTies[0] += 1;
         }
     }
 
     public boolean gameResult() {
-        if (wins == roundsToWin) {
+        if (winLossTies[0] == roundsToWin) {
             System.out.println("Congratulations, you won!");
-            System.out.printf("Rounds won: %d. Rounds lost %d. Rounds tied %d.\n\n", wins, loss, ties);
+            System.out.printf("Rounds won: %d. Rounds lost %d. Rounds tied %d.\n\n", winLossTies[0], winLossTies[1],
+                    winLossTies[2]);
             return false; //Game Over
-        } else if (loss == roundsToWin) {
+        } else if (winLossTies[1] == roundsToWin) {
             System.out.println("Sorry, the computer won...");
-            System.out.printf("Rounds won: %d. Rounds lost %d. Rounds tied %d.\n\n", wins, loss, ties);
+            System.out.printf("Rounds won: %d. Rounds lost %d. Rounds tied %d.\n\n", winLossTies[0], winLossTies[1],
+                    winLossTies[2]);
             return false; //Game Over
         } else {
             return true; // Keep playing
