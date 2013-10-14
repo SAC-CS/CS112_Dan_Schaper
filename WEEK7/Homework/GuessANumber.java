@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -27,7 +28,12 @@ public class GuessANumber {
         int userEntry = 0;
         while (userEntry > 10 || userEntry < 1) {
             System.out.print("Please enter a number between 1 and 10: ");
-            userEntry = in.nextInt();
+            try {
+                userEntry = in.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Please enter numbers only.");
+                in.nextLine();
+            }
         }
         userGuess = userEntry;
     }
