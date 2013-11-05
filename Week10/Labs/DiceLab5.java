@@ -46,3 +46,5 @@ public class DiceLab5 {
         return m_value;
     }
 }
+
+// Good
