@@ -9,10 +9,12 @@ public class Dice {
     private static int s_throws;
     private int m_value;
     private int m_bounces;
+    private int m_dices;
     Random rand = new Random();
 
-    public Dice(int bounces) {
-        m_bounces = bounces;
+    public Dice(int dices) {
+        m_dices = dices;
+        m_bounces = 1;
     }
 
     public Dice() {
@@ -20,11 +22,15 @@ public class Dice {
     }
 
     public int Throw() {
-        int sum = 0;
-        for (int i = 0; i < m_bounces; i++) {
-            sum += rand.nextInt(6) + 1;
+        int dicesSum = 0;
+        for (int dices = 0; dices < m_dices; dices++) {  // Loop through number of dices
+            int bounceSum = 0;
+            for (int bounces = 0; bounces < m_bounces; bounces++) {  // Loop through number of bounces
+                bounceSum += rand.nextInt(6) + 1;
+            }
+            dicesSum += bounceSum / m_bounces;  // Add bounce average to dicesSum
         }
-        m_value = sum / m_bounces;
+        m_value = dicesSum / m_dices;  // Set m_value to average of dices rolls
         return m_value;
     }
 
