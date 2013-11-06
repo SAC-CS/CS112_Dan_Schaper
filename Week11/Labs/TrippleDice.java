@@ -8,14 +8,4 @@ public class TrippleDice extends Dice {
     public TrippleDice() {
         super(3);
     }
-
-//    @Override
-//    public int Throw() {
-//        int sum = 0;
-//        for (int i = 0; i < 3; i++) {
-//            sum += super.Throw();
-//        }
-//        return sum / 3;
-//    }
-
 }
