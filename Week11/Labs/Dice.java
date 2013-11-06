@@ -6,6 +6,7 @@ import java.util.Random;
  *         Time: 7:19 PM
  */
 public class Dice {
+    private static int s_throws;
     private int m_value;
     private int m_bounces;
     Random rand = new Random();
@@ -39,10 +40,15 @@ public class Dice {
 
     public static int OneThrow() {
         Random rFace = new Random();
+        s_throws++;
         return rFace.nextInt(6) + 1;
     }
 
     public int Value() {
         return m_value;
+    }
+
+    public int getS_throws() {
+        return s_throws;
     }
 }

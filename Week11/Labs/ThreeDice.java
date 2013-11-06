@@ -4,9 +4,15 @@
  *         Time: 7:21 PM
  */
 public class ThreeDice {
-    Dice D1 = new Dice();
-    Dice D2 = new Dice();
-    Dice D3 = new Dice();
+    private Dice D1;
+    private Dice D2;
+    private Dice D3;
+
+    public ThreeDice() {
+        D1 = new Dice();
+        D2 = new Dice();
+        D3 = new Dice();
+    }
 
     public int Throw() {
         int m_sum = 0;
