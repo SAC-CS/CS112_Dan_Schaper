@@ -57,4 +57,9 @@ public class Dice {
     public int getS_throws() {
         return s_throws;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%d Dices, %d Bounces, Current Value is %d", m_dices, m_bounces, m_value);
+    }
 }
