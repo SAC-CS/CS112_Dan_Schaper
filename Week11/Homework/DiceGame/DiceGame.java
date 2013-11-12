@@ -13,8 +13,11 @@ public class DiceGame {
     private int playerGuess; // Players guess
     private int numCompWins; // Number of Computer wins
     private TrippleDiceWithHistory dices; // Dice for game
-    public ArrayList<String[]> history; // ArrayList for game history
+    private ArrayList<Integer[]> history; // ArrayList for game history
     public boolean play; // Play the game
+
+    private enum Winner {Computer, Player}
+
 
     public DiceGame() {  // Construct the game
         numOfBounces = 0;
@@ -73,19 +76,19 @@ public class DiceGame {
      * Main game logic
      */
     public void playGame() {
-        String winner;
+        Winner winner;
         String result;
         int dicesValue = dices.getValue();
         if (playerGuess == dicesValue) {
-            winner = "Player";
+            winner = Winner.Player;
             result = "You Won!";
         } else {
-            winner = "Computer";
+            winner = Winner.Computer;
             result = "You lost...";
             numCompWins++;
         }
         System.out.printf("You guessed %d, the computer rolled %d, %s\n", playerGuess, dicesValue, result);
-        this.setHistory(winner, playerGuess);
+        this.setHistory(winner, playerGuess, dicesValue);
     }
 
     /**
@@ -101,8 +104,8 @@ public class DiceGame {
      */
     public void printHistory() {
         System.out.println("Round   Player Guess   Computer Roll     Winner");
-        for (String[] entry : history) {
-            System.out.printf("%5s%15s%16s%11s\n", entry[0], entry[1], entry[2], entry[3]);
+        for (Integer[] entry : history) {
+            System.out.printf("%5s%15s%16s%11s\n", entry[0], entry[1], entry[2], Winner.values()[entry[3]]);
         }
         int numPlayerWins = dices.getThrows() - numCompWins;
         double playerWinPercent = (double) numPlayerWins / dices.getThrows();
@@ -116,9 +119,9 @@ public class DiceGame {
      * @param winner      Winner of the game round
      * @param playerGuess Players guess for this round
      */
-    public void setHistory(String winner, int playerGuess) {
-        String[] entry = {Integer.toString(dices.getThrows()), Integer.toString(playerGuess), Integer.toString(dices.getValue()),
-                winner}; // Create the String array for the history entry in the ArrayList
+    public void setHistory(Winner winner, int playerGuess, int dicesValue) {
+        Integer[] entry = {history.size() + 1, playerGuess, dicesValue,
+                winner.ordinal()}; // Create the Integer array for the history entry in the ArrayList
         history.add(entry); // Add to the ArrayList
     }
 

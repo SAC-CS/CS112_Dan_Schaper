@@ -13,7 +13,7 @@ public class Dice implements Cloneable {
     private int m_value;
     private int m_bounces;
     private int m_dices;
-    Random rand = new Random();
+    private static final Random rand = new Random();
 
     public Dice(int dices, int bounces) { // full constructor
         setDices(dices);
