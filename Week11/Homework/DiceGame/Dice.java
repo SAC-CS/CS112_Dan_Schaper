@@ -8,7 +8,7 @@ import java.util.Random;
  *         Week 11 Homework
  *         TripleDiceWithHistory clone / equals method overrides
  */
-public class Dice {
+public class Dice implements Cloneable {
     private int m_throws;
     private int m_value;
     private int m_bounces;
@@ -16,8 +16,8 @@ public class Dice {
     Random rand = new Random();
 
     public Dice(int dices, int bounces) { // full constructor
-        setM_dices(dices);
-        setM_bounces(bounces);
+        setDices(dices);
+        setBounces(bounces);
     }
 
     public Dice(int dices) {  // dices only constructor
@@ -28,7 +28,7 @@ public class Dice {
         this(1, 1);
     }
 
-    public void setM_dices(int d) {
+    public void setDices(int d) {
         if (d > 0) {
             m_dices = d;
         } else {
@@ -36,7 +36,11 @@ public class Dice {
         }
     }
 
-    public void setM_bounces(int b) {
+    public int getBounces() {
+        return m_bounces;
+    }
+
+    public void setBounces(int b) {
         if (b > 0) {
             m_bounces = b;
         } else {
@@ -69,5 +73,10 @@ public class Dice {
     @Override
     public String toString() {
         return String.format("%d Dices, %d Bounces, Current Value is %d", m_dices, m_bounces, m_value);
+    }
+
+    @Override
+    public Dice clone() throws CloneNotSupportedException {
+        return (Dice) super.clone();
     }
 }

@@ -64,12 +64,8 @@ public class TrippleDiceWithHistory extends TrippleDice {
      * @return new TrippleDiceWithHistory object deep copied
      */
     @Override
-    public TrippleDiceWithHistory clone() {
-        TrippleDiceWithHistory clone = new TrippleDiceWithHistory(); // Create new TrippleDice object
-        for (int entry : this.hist) { // loop through each entry in this TrippleDices history
-            clone.hist.add(entry);   // add entry to clone TrippleDice history
-        }
-        return clone;  // return cloned TrippleDice object
+    public TrippleDiceWithHistory clone() throws CloneNotSupportedException {
+        return (TrippleDiceWithHistory) super.clone();  // return cloned TrippleDice object
     }
 
     /**
