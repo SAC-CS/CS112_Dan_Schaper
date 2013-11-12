@@ -11,7 +11,6 @@ public class DiceGame {
     private Scanner in = new Scanner(System.in);
     private int numOfBounces; // Number of bounces per roll
     private int playerGuess; // Players guess
-    private int numCompWins; // Number of Computer wins
     private TrippleDiceWithHistory dices; // Dice for game
     private ArrayList<Integer[]> history; // ArrayList for game history
     public boolean play; // Play the game
@@ -22,7 +21,6 @@ public class DiceGame {
     public DiceGame() {  // Construct the game
         numOfBounces = 0;
         play = true;
-        numCompWins = 0;
         history = new ArrayList<>();
         System.out.println("Welcome to the Guess A Number Game -- Now With TrippleDice!");
         System.out.println("The computer will pick a number using three standard 6 sided dice.");
@@ -85,7 +83,6 @@ public class DiceGame {
         } else {
             winner = Winner.Computer;
             result = "You lost...";
-            numCompWins++;
         }
         System.out.printf("You guessed %d, the computer rolled %d, %s\n", playerGuess, dicesValue, result);
         this.setHistory(winner, playerGuess, dicesValue);
@@ -103,12 +100,13 @@ public class DiceGame {
      * Print the game history
      */
     public void printHistory() {
+        int numPlayerWins = 0;
         System.out.println("Round   Player Guess   Computer Roll     Winner");
         for (Integer[] entry : history) {
             System.out.printf("%5s%15s%16s%11s\n", entry[0], entry[1], entry[2], Winner.values()[entry[3]]);
+            numPlayerWins += entry[3];
         }
-        int numPlayerWins = dices.getThrows() - numCompWins;
-        double playerWinPercent = (double) numPlayerWins / dices.getThrows();
+        double playerWinPercent = (double) numPlayerWins / history.size();
         System.out.printf("Player won %d games (%.1f%%)", numPlayerWins, playerWinPercent * 100);
 
     }
