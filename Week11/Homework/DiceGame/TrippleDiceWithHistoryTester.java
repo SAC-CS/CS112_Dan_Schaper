@@ -25,3 +25,7 @@ public class TrippleDiceWithHistoryTester {
 
     }
 }
+
+// Try these:
+//        System.out.printf("T1 and Clone of T1 %s equal\n", T1 == cloneDice ? "are" : "are not");
+//        System.out.printf("T2 and Clone of T1 %s equal\n", T2 == cloneDice ? "are" : "are not");
