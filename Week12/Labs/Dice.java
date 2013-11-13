@@ -3,7 +3,7 @@
  *         Date: 11/12/13
  *         Time: 7:49 PM
  */
-abstract public class Dice {
+public abstract class Dice {
     private int m_value;
 
     public Dice() {

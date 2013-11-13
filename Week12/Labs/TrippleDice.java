@@ -4,7 +4,6 @@
  *         Time: 8:00 PM
  */
 public class TrippleDice extends Dice {
-    private int m_value;
 
     public TrippleDice() {
         super();
@@ -17,7 +16,7 @@ public class TrippleDice extends Dice {
 
     @Override
     public String toString() {
-        return String.format("Tripple Dice ");
+        return String.format("Tripple Dice");
     }
 
 }
