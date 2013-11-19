@@ -11,7 +11,8 @@ import java.util.Scanner;
  * To change this template use File | Settings | File Templates.
  */
 public class GameBoard {
-    Scanner in = new Scanner(System.in);
+    private Scanner in = new Scanner(System.in);
+    private static Random rand = new Random();
     private Token[][] board;
     private Token playerToken;
     private Token compToken;
@@ -21,10 +22,9 @@ public class GameBoard {
 
     private enum Columns {A, B, C}
 
-    private enum Token {EMPTY, X, O}
+    public enum Token {EMPTY, X, O}
 
     private ArrayList<String> allMoves;
-
 
     public GameBoard() {
         play = true;
@@ -82,32 +82,51 @@ public class GameBoard {
     }
 
     public void getMove() {
-        System.out.print("Enter your coordinate move: ");
-        String move = in.nextLine();
-        int col = Columns.valueOf(move.substring(0, 1).toUpperCase()).ordinal();
-        int row = Integer.parseInt(move.substring(1)) - 1;
-        while (board[row][col] != Token.EMPTY) {
-            System.out.println("Already a token there");
-            System.out.print("Enter your coordinate move: ");
-            move = in.nextLine();
-            col = Columns.valueOf(move.substring(0, 1).toUpperCase()).ordinal();
-            row = Integer.parseInt(move.substring(1)) - 1;
+        String move;
+        Move cellMove = new Move();
+        boolean continueLoop = true;
+        do {
+            try {
+                System.out.print("Enter your coordinate move: ");
+                move = in.nextLine();
+                cellMove.setCol(move.substring(0, 1).toUpperCase());
+                cellMove.setRow(Integer.parseInt(move.substring(1)));
+                cellMove.setToken(playerToken);
+                continueLoop = !doMove(cellMove);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Please enter your move as A1, B2 or similar.");
+            }
+        } while (continueLoop);
+    }
+
+    public boolean doMove(Move cellMove) {
+        try {
+            String col = cellMove.getCol();
+            int row = cellMove.getRow();
+            int colOrd = Columns.valueOf(col).ordinal();
+            Token playerToken = cellMove.getToken();
+            if (board[row][colOrd] != Token.EMPTY) {
+                throw new IllegalArgumentException();
+            }
+            allMoves.remove(col + (row + 1));
+            board[row][colOrd] = playerToken;
+            checkWinner(row, colOrd, playerToken);
+        } catch (IllegalArgumentException e) {
+            System.out.println("That cell already has a token in it.");
+            return false;
         }
-        allMoves.remove(move);
-        board[row][col] = playerToken;
-        checkWinner(row, col, playerToken);
+        return true;
     }
 
     public void compMove() {
-        Random rand = new Random();
-        int i = rand.nextInt(allMoves.size());
-        String compMove = allMoves.get(i);
-        int col = Columns.valueOf(compMove.substring(0, 1).toUpperCase()).ordinal();
-        int row = Integer.parseInt(compMove.substring(1)) - 1;
+        Move cellMove = new Move();
+        String compMove = allMoves.get(rand.nextInt(allMoves.size()));
+        cellMove.setCol(compMove.substring(0, 1).toUpperCase());
+        cellMove.setRow(Integer.parseInt(compMove.substring(1)));
+        cellMove.setToken(compToken);
         System.out.printf("Computer picks %s\n", compMove);
-        allMoves.remove(compMove);
-        board[row][col] = compToken;
-        checkWinner(row, col, compToken);
+        doMove(cellMove);
+
     }
 
     /*
