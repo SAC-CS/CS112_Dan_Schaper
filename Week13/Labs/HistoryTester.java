@@ -11,10 +11,27 @@ public class HistoryTester {
         historyObjects[0] = new Dice();
         historyObjects[1] = new Card();
 
-        for (History historyItem : historyObjects) {
-            historyItem.getRandom();
-            historyItem.getRandom();
-            System.out.println(historyItem.printHistory());
+        try {
+            for (History historyItem : historyObjects) {
+                historyItem.getRandom();
+                historyItem.getRandom();
+                historyItem.getRandom();
+                System.out.println(historyItem.printHistory());
+            }
+        } catch (UnsupportedOperationException e) {
+            System.out.printf("Error: %s", e);
+        }
+
+        try {
+            for (History historyItem : historyObjects) {
+                historyItem.getRandom();
+                historyItem.getRandom();
+                historyItem.getRandom();
+                historyItem.getRandom();
+                System.out.println(historyItem.printHistory());
+            }
+        } catch (UnsupportedOperationException e) {
+            System.out.printf("Error: %s", e);
         }
 
     }

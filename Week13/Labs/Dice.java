@@ -17,6 +17,9 @@ public class Dice implements History {
     }
 
     public int getRandom() {
+        if (hist.size() > 2) {
+            throw new UnsupportedOperationException("Dice thrown 3 times already.");
+        }
         int m_val = rand.nextInt(6) + 1;
         hist.add(m_val + "");
         return m_val;
