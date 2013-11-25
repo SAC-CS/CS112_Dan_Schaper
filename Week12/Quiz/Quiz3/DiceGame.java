@@ -1,6 +1,5 @@
 package Quiz3;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -11,18 +10,20 @@ public class DiceGame {
     private Scanner in = new Scanner(System.in);
     private int playerGuess; // Players guess
     private Dice dices; // Dice for game
-    private ArrayList<Integer[]> history; // ArrayList for game history
+    private String history; // ArrayList for game history
     public boolean play; // Play the game
     private int diceValue;
     private int numDice;
-    int numPlayerWins;
+    private int numPlayerWins;
+    private int numRounds;
 
     private enum Winner {Computer, Player}
 
 
     public DiceGame() {  // Construct the game
         play = true;
-        history = new ArrayList<>();
+        history = "";
+        numRounds = 0;
         System.out.println("Welcome to the Guess A Number Game -- Now With multiple dice!");
         System.out.println("The computer will pick a number using between one and three standard 6 sided dice.");
     }
@@ -59,14 +60,14 @@ public class DiceGame {
      * Get the players guess
      */
     public void setPlayerGuess() {
-        System.out.printf("Now it's your turn to guess (between 1 and %d): ", 6 * numDice);
+        System.out.printf("Now it's your turn to guess (between %d and %d): ", numDice, 6 * numDice);
         while (!in.hasNextInt()) {  // Check for integer input
             System.out.print("Please enter a number only: ");
             in.next();
         }
         playerGuess = in.nextInt();
-        while (playerGuess < 1 || playerGuess > 6 * numDice) {   // Check if input is valid
-            System.out.print("You can only guess a number that could possible be rolled: ");
+        while (playerGuess < numDice || playerGuess > 6 * numDice) {   // Check if input is valid
+            System.out.print("You can only guess a number that could possibly be rolled: ");
             playerGuess = in.nextInt();
         }
     }
@@ -75,11 +76,13 @@ public class DiceGame {
      * Main game logic
      */
     public void playGame() {
+        numRounds++;
         Winner winner;
         String result;
         if (playerGuess == diceValue) {
             winner = Winner.Player;
             result = "You Won!";
+            numPlayerWins++;
         } else {
             winner = Winner.Computer;
             result = "You lost...";
@@ -96,24 +99,13 @@ public class DiceGame {
         play = "y".contains(in.next().substring(0, 1).toLowerCase());
     }
 
-    /**
-     * Print the game history
-     */
-    @Override
-    public String toString() {
-        String result = "";
+    public String getHistory() {
+        String result = "\n";
+        double playerWinPercent = (double) numPlayerWins / numRounds * 100;
         result += String.format("Round   Player Guess   Computer Roll     Winner\n");
-        for (Integer[] entry : history) {
-            result += String.format("%5s%15s%16s%11s\n", entry[0], entry[1], entry[2], Winner.values()[entry[3]]);
-            numPlayerWins += entry[3];
-        }
+        result += history;
+        result += String.format("\nPlayer won %d games (%.1f%%)", numPlayerWins, playerWinPercent);
         return result;
-    }
-
-    public void printHistory() {
-        double playerWinPercent = (double) numPlayerWins / history.size();
-        System.out.printf("Player won %d games (%.1f%%)", numPlayerWins, playerWinPercent * 100);
-
     }
 
     /**
@@ -123,9 +115,7 @@ public class DiceGame {
      * @param playerGuess Players guess for this round
      */
     public void setHistory(Winner winner, int playerGuess, int dicesValue) {
-        Integer[] entry = {history.size() + 1, playerGuess, dicesValue,
-                winner.ordinal()}; // Create the Integer array for the history entry in the ArrayList
-        history.add(entry); // Add to the ArrayList
+        history += String.format("%5s%15s%16s%11s\n", numRounds, playerGuess, dicesValue, winner.toString());
     }
 
 

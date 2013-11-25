@@ -15,8 +15,6 @@ public class DiceGamePlayer {
             game.playGame();
             game.playAgain();
         }
-        System.out.println(game);
-        game.printHistory();
-
+        System.out.print(game.getHistory());
     }
 }

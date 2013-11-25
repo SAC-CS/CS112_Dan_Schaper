@@ -24,17 +24,18 @@ public class Dice {
     }
 
     public int Throw() {
-        int value = rand.nextInt(6 * dices) + 1;
-        this.hist.add(value);
+        int value = rand.nextInt((6 * dices - dices) + 1) + dices;   // ((max - min) + 1) + min;
+        hist.add(value);
         return value;
     }
 
     @Override
     public String toString() {
-        String result = "";
-        for (int roll : hist) {
-            result += roll + ", ";
+        String result = String.format("%d Dice Roll: ", dices);
+        for (int i = 0; i < hist.size() - 1; i++) {
+            result += hist.get(i) + ", ";
         }
+        result += hist.get(hist.size() - 1) + "";
         return result;
     }
 
