@@ -11,7 +11,7 @@ public class DiceGame {
     private int playerGuess; // Players guess
     private Dice dices; // Dice for game
     private String history; // ArrayList for game history
-    public boolean play; // Play the game
+    protected boolean play; // Play the game
     private int diceValue;
     private int numDice;
     private int numPlayerWins;

@@ -9,12 +9,12 @@ public class DiceGamePlayer {
     public static void main(String[] args) {
         DiceGame game = new DiceGame();
         game.createDices();
-        while (game.play) {
+        do {
             game.throwDices();
             game.setPlayerGuess();
             game.playGame();
             game.playAgain();
-        }
+        } while (game.play);
         System.out.print(game.getHistory());
     }
 }
