@@ -36,7 +36,7 @@ public class DiceGame {
         numDice = in.nextInt();
         switch (numDice) {
             case 1:
-                dices = new Dice();
+                dices = new SingleDice();
                 break;
             case 2:
                 dices = new DoubleDice();

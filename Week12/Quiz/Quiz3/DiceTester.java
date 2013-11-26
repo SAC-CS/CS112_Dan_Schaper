@@ -7,9 +7,9 @@ package Quiz3;
  */
 public class DiceTester {
     public static void main(String[] args) {
-        Dice d1 = new Dice();
-        DoubleDice d2 = new DoubleDice();
-        TrippleDice d3 = new TrippleDice();
+        Dice d1 = new SingleDice();
+        Dice d2 = new DoubleDice();
+        Dice d3 = new TrippleDice();
         for (int i = 0; i < 10; i++) {
             d1.Throw();
             d2.Throw();

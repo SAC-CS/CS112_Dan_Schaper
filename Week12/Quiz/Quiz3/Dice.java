@@ -8,7 +8,7 @@ import java.util.Random;
  *         Date: 11/12/13
  *         Time: 8:40 PM
  */
-public class Dice {
+public abstract class Dice {
     private int dices;
     private ArrayList<Integer> hist;
     public static final Random rand = new Random();
@@ -31,7 +31,7 @@ public class Dice {
 
     @Override
     public String toString() {
-        String result = String.format("%d Dice Roll: ", dices);
+        String result = "Roll History: ";
         for (int i = 0; i < hist.size() - 1; i++) {
             result += hist.get(i) + ", ";
         }

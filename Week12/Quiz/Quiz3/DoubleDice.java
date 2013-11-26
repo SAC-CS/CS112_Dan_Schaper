@@ -11,4 +11,9 @@ public class DoubleDice extends Dice {
         super(2);
     }
 
+    @Override
+    public String toString() {
+        return "DoubleDice " + super.toString();
+    }
+
 }
