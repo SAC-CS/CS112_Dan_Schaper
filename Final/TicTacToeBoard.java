@@ -62,9 +62,9 @@ public class TicTacToeBoard {
      * @return Values for marks on the row containing cell
      */
     public String getRow(int cell) {
-        int[][] rows = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}};
+        int rows = cell / 3; // cell / 3 results in 0, 1 or 2 for rows index
         String rowString = ""; // String to store row of cell marks
-        for (int i : rows[cell / 3]) { // row / 3 results in 0, 1 or 2 for rows index
+        for (int i = rows; i < rows + 3; i++) {
             rowString += this.getCell(i); // add mark in cell at row + column
         }
         return rowString;
@@ -77,9 +77,9 @@ public class TicTacToeBoard {
      * @return Values for marks on the column containing cell
      */
     public String getCol(int cell) {
-        int[][] cols = {{0, 3, 6}, {1, 4, 7}, {2, 5, 8}};
+        int column = cell % 3;
         String colString = ""; // String to store row of cell argument
-        for (int i : cols[cell % 3]) {  // Mod results in column 0, 1 or 2 for col index
+        for (int i = column; i < 9; i += 3) {
             colString += this.getCell(i);
         }
         return colString;

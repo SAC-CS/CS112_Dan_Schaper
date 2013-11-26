@@ -31,7 +31,7 @@ public class TicTacToeGame {
         do {
             try {
                 int playerPick = pickLetter();
-                //  players[PLAYER_0] = new Player(playerPick); // Set human player
+                //players[PLAYER_0] = new Player(playerPick); // Set human player
                 players[PLAYER_0] = new ComputerPlayer(playerPick); // Set computer to play itself
                 players[PLAYER_1] = new ComputerPlayer(playerPick == MARK_X ? MARK_O : MARK_X);
                 continueLoop = false;
