@@ -1,6 +1,5 @@
 package Quiz3;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -8,15 +7,14 @@ import java.util.Random;
  *         Date: 11/12/13
  *         Time: 8:40 PM
  */
-public class Dice {
+public abstract class Dice {
     private int dices;
-    private ArrayList<Integer> hist;
+    private String hist;
     public static final Random rand = new Random();
 
     public Dice(int d) {
         dices = d;
-        hist = new ArrayList<>();
-
+        hist = "";
     }
 
     public Dice() {
@@ -25,18 +23,17 @@ public class Dice {
 
     public int Throw() {
         int value = rand.nextInt((6 * dices - dices) + 1) + dices;   // ((max - min) + 1) + min;
-        hist.add(value);
+        if (hist.isEmpty()) {
+            hist += value + "";
+        } else {
+            hist += ", " + value;
+        }
         return value;
     }
 
     @Override
     public String toString() {
-        String result = String.format("%d Dice Roll: ", dices);
-        for (int i = 0; i < hist.size() - 1; i++) {
-            result += hist.get(i) + ", ";
-        }
-        result += hist.get(hist.size() - 1) + "";
-        return result;
+        return "Roll History: " + hist;
     }
 
 

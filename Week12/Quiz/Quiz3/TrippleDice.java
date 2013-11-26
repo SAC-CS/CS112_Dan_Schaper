@@ -11,4 +11,9 @@ public class TrippleDice extends Dice {
         super(3);
     }
 
+    @Override
+    public String toString() {
+        return "TrippleDice " + super.toString();
+    }
+
 }
