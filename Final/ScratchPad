@@ -1,0 +1,54 @@
+/*
+     * Check to see if last move was a winning move
+     *//*
+
+    public void checkWinner(int row, int col, Token playerMove) {
+        // We always need to check the row and column of last move
+        for (int checkRow = 0; checkRow < boardLength; checkRow++) {
+            if (board[row][checkRow] != playerMove) {
+                break;
+            }
+            if (checkRow == boardLength - 1) {
+                play = false;
+                winner = playerMove;
+            }
+        }
+        for (int checkCol = 0; checkCol < board.length; checkCol++) {
+            if (board[checkCol][col] != playerMove || !play) { // If tokens don't match or we already have a winner
+                break;
+            }
+            if (checkCol == boardLength - 1) {
+                play = false;
+                winner = playerMove;
+            }
+        }
+        // If move is on a diagonal, check them (If Column - Row % 2 == 0)
+        if (Math.abs(row - col) % 2 == 0 && play) {   // Only check diags if move is on diag and we don't have a winner
+            // Check forward diag
+            for (int foreDiag = 0; foreDiag < boardLength; foreDiag++) {
+                if (board[foreDiag][foreDiag] != playerMove) {
+                    break;
+                }
+                if (foreDiag == boardLength - 1) {
+                    play = false;
+                    winner = playerMove;
+                }
+            }
+            // Check back diag
+            for (int backDiag = 0; backDiag < boardLength; backDiag++) {
+                if (board[backDiag][(boardLength - 1) - backDiag] != playerMove) {
+                    break;
+                }
+                if (backDiag == boardLength - 1) {
+                    play = false;
+                    winner = playerMove;
+                }
+            }
+
+        }
+        if (allMoves.size() == 0) { // If the board is full
+            play = false;
+            winner = Token.EMPTY;
+        }
+        System.out.println(this.toString());
+    }*/
