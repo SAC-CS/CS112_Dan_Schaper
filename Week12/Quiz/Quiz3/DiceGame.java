@@ -11,7 +11,7 @@ public class DiceGame {
     private int playerGuess; // Players guess
     private Dice dices; // Dice for game
     private String history; // ArrayList for game history
-    protected boolean play; // Play the game
+    private boolean continueGame; // Play the game
     private int diceValue;
     private int numDice;
     private int numPlayerWins;
@@ -21,7 +21,7 @@ public class DiceGame {
 
 
     public DiceGame() {  // Construct the game
-        play = true;
+        continueGame = true;
         history = "";
         numRounds = 0;
         System.out.println("Welcome to the Guess A Number Game -- Now With multiple dice!");
@@ -32,7 +32,7 @@ public class DiceGame {
      * Instantiate the dice for this game
      */
     public void createDices() {
-        System.out.print("How many dice would you like to play with, 1, 2 or 3 :");
+        System.out.print("How many dice would you like to continueGame with, 1, 2 or 3 :");
         numDice = in.nextInt();
         switch (numDice) {
             case 1:
@@ -95,8 +95,8 @@ public class DiceGame {
      * Check to see if user wants to continue
      */
     public void playAgain() {
-        System.out.print("Would you like to play again? ");
-        play = "y".contains(in.next().substring(0, 1).toLowerCase());
+        System.out.print("Would you like to continueGame again? ");
+        continueGame = "y".contains(in.next().substring(0, 1).toLowerCase());
     }
 
     public String getHistory() {
@@ -116,6 +116,10 @@ public class DiceGame {
      */
     public void setHistory(Winner winner, int playerGuess, int dicesValue) {
         history += String.format("%5s%15s%16s%11s\n", numRounds, playerGuess, dicesValue, winner.toString());
+    }
+
+    public boolean continueGame() {
+        return continueGame;
     }
 
 

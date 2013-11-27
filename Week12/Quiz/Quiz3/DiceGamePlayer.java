@@ -14,7 +14,7 @@ public class DiceGamePlayer {
             game.setPlayerGuess();
             game.playGame();
             game.playAgain();
-        } while (game.play);
+        } while (game.continueGame());
         System.out.print(game.getHistory());
     }
 }
