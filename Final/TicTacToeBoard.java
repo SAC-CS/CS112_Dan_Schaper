@@ -62,7 +62,7 @@ public class TicTacToeBoard {
      * @return Values for marks on the row containing cell
      */
     public String getRow(int cell) {
-        int rows = cell / 3; // cell / 3 results in 0, 1 or 2 for rows index
+        int rows = (cell / 3) * 3; // cell / 3 results in 0, 1 or 2 for rows index
         String rowString = ""; // String to store row of cell marks
         for (int i = rows; i < rows + 3; i++) {
             rowString += this.getCell(i); // add mark in cell at row + column

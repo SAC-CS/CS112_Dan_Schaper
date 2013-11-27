@@ -1,7 +1,7 @@
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 
 /**
@@ -30,8 +30,9 @@ public class TicTacToeGame {
         boolean continueLoop = true;
         do {
             try {
-                int playerPick = pickLetter();
+                //int playerPick = pickLetter(); // For Human Player - Comment out for computer vs computer
                 //players[PLAYER_0] = new Player(playerPick); // Set human player
+                int playerPick = 0; // For Computer vs Computer - Comment out for human player
                 players[PLAYER_0] = new ComputerPlayer(playerPick); // Set computer to play itself
                 players[PLAYER_1] = new ComputerPlayer(playerPick == MARK_X ? MARK_O : MARK_X);
                 continueLoop = false;
@@ -80,12 +81,14 @@ public class TicTacToeGame {
 
     private boolean isGameOver() {
         String pTokenWinString;
+        String lines;
         if (emptyCells.length() > 6) { // 3 moves have not yet been played
             return false;
         }
         pTokenWinString = players[currentPlayer].getToken() + "{3}"; // regex string of 3 consecutive player tokens - a win string
-        for (String line : getCheckLines(lastCell)) {
-            if (line.matches(pTokenWinString)) {
+        lines = getCheckLines(lastCell);
+        for (int i = 0; i < lines.length(); i += 3) {
+            if (Pattern.matches(pTokenWinString, lines.substring(i, i + 3))) {
                 winner = String.format("Player %s Won!", players[currentPlayer].getToken());
                 return true;
             }
@@ -94,18 +97,12 @@ public class TicTacToeGame {
         return tGameBoard.getEmptyCells().length() == 0; // Board is full
     }
 
-    private ArrayList<String> getCheckLines(int cell) {
-        ArrayList<String> lines = new ArrayList<>();
-        lines.add(tGameBoard.getRow(cell));
-        lines.add(tGameBoard.getCol(cell));
-        String fDiag = tGameBoard.getFDiag(cell);
-        String bDiag = tGameBoard.getBDiag(cell);
-        if (!fDiag.isEmpty()) {
-            lines.add(fDiag);
-        }
-        if (!bDiag.isEmpty()) {
-            lines.add(bDiag);
-        }
+    private String getCheckLines(int cell) {
+        String lines = "";
+        lines += tGameBoard.getRow(cell);
+        lines += tGameBoard.getCol(cell);
+        lines += tGameBoard.getFDiag(cell);
+        lines += tGameBoard.getBDiag(cell);
         return lines;
     }
 
