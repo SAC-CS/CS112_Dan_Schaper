@@ -32,7 +32,7 @@ public class DiceGame {
      * Instantiate the dice for this game
      */
     public void createDices() {
-        System.out.print("How many dice would you like to continueGame with, 1, 2 or 3 :");
+        System.out.print("How many dice would you like to play with, 1, 2 or 3 :");
         numDice = in.nextInt();
         switch (numDice) {
             case 1:
