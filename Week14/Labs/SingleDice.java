@@ -24,8 +24,10 @@ public class SingleDice extends Dice implements Runnable {
 
     @Override
     public void run() {
+        System.out.println(threadName + "loop begin");
         for (int i = 0; i < 3; i++) {
             this.add(super.Throw());
         }
+        System.out.println(threadName + "loop end");
     }
 }

@@ -15,8 +15,12 @@ public class SyncDiceExecutor {
         SingleDice SD2 = new SingleDice("SD2");
         SingleDice SD3 = new SingleDice("SD3");
         executor.execute(SD1);
+        System.out.println("Starting Thread Sd1");
         executor.execute(SD2);
+        System.out.println("Starting Thread SD2");
         executor.execute(SD3);
+        System.out.println("Starting Thread SD3");
+
 
     }
 }
