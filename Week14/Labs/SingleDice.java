@@ -13,6 +13,6 @@ public class SingleDice extends Dice implements Runnable {
 
     @Override
     public void run() {
-        super.Throw();
+        System.out.println(super.Throw());
     }
 }
