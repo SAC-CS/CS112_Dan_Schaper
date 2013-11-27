@@ -7,11 +7,11 @@ public class DiceMain {
     public static void main(String[] args) {
         System.out.println("Start");
         for (int i = 0; i < 25; i++) {
-            Runnable SDThread = new SingleDice();
+            Runnable SDThread = new SingleDice(String.valueOf(i));
             Thread worker = new Thread(SDThread);
             worker.setName("SingleDice " + i);
             worker.start();
-            System.out.printf("%s Complete \n", worker.getName());
+//            System.out.printf("%s Complete \n", worker.getName());
         }
         System.out.println("Main Complete");
     }
